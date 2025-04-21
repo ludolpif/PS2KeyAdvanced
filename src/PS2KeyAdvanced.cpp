@@ -669,10 +669,6 @@ _tail = index;
 data = _rx_buffer[ index ] & 0xFF;
 index = ( _rx_buffer[ index ] & 0xFF00 ) >> 8;
 
-// Catch special case of PAUSE key
-if( index & _E1_MODE )
-  return  PS2_KEY_PAUSE + _FUNCTION;
-
 // Ignore anything not actual keycode but command/response
 // Return untranslated as valid
 if( ( data >= PS2_KC_BAT && data != PS2_KC_LANG1 && data != PS2_KC_LANG2 )
@@ -686,6 +682,12 @@ else
   PS2_keystatus &= ~_BREAK;
 
 retdata = 0;    // error code by default
+
+// Catch special case of PAUSE key
+if( index & _E1_MODE ) {
+  retdata = PS2_KEY_PAUSE;
+  PS2_keystatus |= _FUNCTION;
+} else
 // Scan appropriate table
 if( index & _E0_MODE )
   {
