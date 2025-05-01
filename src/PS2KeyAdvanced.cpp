@@ -382,6 +382,9 @@ switch( value )
                 state = 4;
                 break;
    case PS2_KC_EXTEND1:   // Major extend code (PAUSE key only)
+                //  PS2 Keyboard don't send break code when Pause/Break key is physically released, but immediately after the make code.
+                //   On Make, it sends make CTRL+numlock then immediatly the break codes for that: E1 14 77  E1 F0 14 F0 77
+                //  PS2_KC_EXTEND1 PS2_KC_CTRL PS2_KC_NUM then PS2_KC_EXTEND1 PS2_KC_KEYBREAK PS2_KC_CTRL PS2_KC_KEYBREAK PS2_KC_NUM
                 if( !( _ps2mode & _E1_MODE ) )  // First E1 only
                   {
                   _bytes_expected = 7;       // seven more bytes
@@ -665,6 +668,7 @@ index++;
 if( index >= _RX_BUFFER_SIZE )
   index = 0;
 _tail = index;
+
 // Get the flags byte break modes etc in this order
 data = _rx_buffer[ index ] & 0xFF;
 index = ( _rx_buffer[ index ] & 0xFF00 ) >> 8;
