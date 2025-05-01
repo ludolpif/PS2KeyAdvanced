@@ -363,7 +363,7 @@
 #define PS2_KEY_LANG2       0X97
 #define PS2_KEY_LANG3       0X98
 #define PS2_KEY_LANG4       0X99
-#define PS2_KEY_LANG5       0xA0
+#define PS2_KEY_LANG5       0X9A
 
 /*
   Purpose: Provides advanced access to PS2 keyboards
