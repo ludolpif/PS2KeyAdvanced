@@ -73,7 +73,8 @@
 #define _HANDSHAKE       0x80
 #define _COMMAND         0x01
 
-/* Key Repeat defines */
+/* Configurable behavior of this library, including key repeat defines */
+#define _NO_LED_LOCK_UPDATE 0x01
 #define _NO_BREAKS       0x08
 #define _NO_REPEATS      0x80
 

@@ -764,7 +764,7 @@ if( key_found > 0 )
           }
         else
           PS2_led_lock |= led_code;
-        set_lock( );
+          if( !( _mode & _NO_LED_LOCK_UPDATE) ) set_lock( );
         }
       }
     }
@@ -872,6 +872,14 @@ PS2_keystatus |= ( code & PS2_LOCK_CAPS ) ? _CAPS : 0;
 set_lock( );
 }
 
+/* Set library to send LED lock updates to the keyboard or not
+            1 = do not send led lock updates
+            0 = send led lock updates */
+void PS2KeyAdvanced::setNoLedLockUpdates( uint8_t data )
+{
+_mode &= ~_NO_LED_LOCK_UPDATE;
+_mode |= data ? _NO_LED_LOCK_UPDATE : 0;
+}
 
 /* Set library to not send break key codes
             1 = no break codes

@@ -400,6 +400,11 @@ class PS2KeyAdvanced {
         PS2_LOCK_NUM    PS2_LOCK_CAPS   PS2_LOCK_SCROLL */
     void setLock( byte );
 
+    /* Set library to send LED lock updates to the keyboard or not
+            1 = do not send led lock updates
+            0 = send led lock updates */
+    void setNoLedLockUpdates( uint8_t );
+
     /* Set library to not send break key codes
             1 = no break codes
             0 = send break codes  */
